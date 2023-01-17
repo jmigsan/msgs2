@@ -10,14 +10,12 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>msgs2</title>
-        <meta name='description' content='Send messages' />
+        <meta name='description' content='Send messages to each other' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div>
-        <div>
-          <AuthShowcase />
-        </div>
-      </div>
+      <main>
+        <AuthShowcase />
+      </main>
     </>
   );
 };
