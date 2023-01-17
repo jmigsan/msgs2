@@ -2,9 +2,16 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { Button } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
-  const { data } = trpc.example.hello.useQuery({ text: 'from tRPC' });
+  const router = useRouter();
+  const { data: sessionData } = useSession();
+
+  if (sessionData !== undefined) {
+    router.push('/dashboard');
+  }
 
   return (
     <>
@@ -29,11 +36,11 @@ const AuthShowcase: React.FC = () => {
 
   return (
     <div>
-      {sessionData && <p>Logged in as {sessionData?.user?.name}</p>}
+      {sessionData && <p>Logged in as {sessionData?.user?.id}</p>}
       {secretMessage && <p>{secretMessage}</p>}
-      <button onClick={sessionData ? () => signOut() : () => signIn()}>
+      <Button onClick={sessionData ? () => signOut() : () => signIn()}>
         {sessionData ? 'Sign out' : 'Sign in'}
-      </button>
+      </Button>
     </div>
   );
 };
