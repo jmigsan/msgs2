@@ -1,6 +1,6 @@
 import { Button, Input } from '@chakra-ui/react';
 import { useState } from 'react';
-import { trpc } from '../../utils/trpc';
+import { trpc } from '../../../utils/trpc';
 
 const SendMessage = ({ currentChatId }: any) => {
   const sendMessageMutation = trpc.chat.sendMessage.useMutation();

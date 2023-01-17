@@ -61,4 +61,13 @@ export const chatRouter = router({
         },
       });
     }),
+  getMessages: protectedProcedure
+    .input(z.object({ chatId: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.messages.findMany({
+        where: {
+          chatsChatId: input.chatId,
+        },
+      });
+    }),
 });
