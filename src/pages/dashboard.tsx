@@ -12,6 +12,7 @@ import ChatInterface from '../components/dashboard/ChatInterface';
 const Dashboard = () => {
   const router = useRouter();
   const { data: sessionData } = useSession();
+  console.log(sessionData);
 
   if (typeof window !== 'undefined') {
     if (sessionData === undefined) {
@@ -29,6 +30,8 @@ const Dashboard = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
+        <AuthShowcase />
+
         <CreateChat />
         <Divider m={2} />
         <ChatList setCurrentChatId={setCurrentChatId} />
@@ -39,3 +42,19 @@ const Dashboard = () => {
   );
 };
 export default Dashboard;
+
+const AuthShowcase: React.FC = () => {
+  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery();
+
+  const { data: sessionData } = useSession();
+
+  return (
+    <div>
+      {sessionData && <p>Logged in as {sessionData?.user?.id}</p>}
+      {secretMessage && <p>{secretMessage}</p>}
+      <Button onClick={sessionData ? () => signOut() : () => signIn()}>
+        {sessionData ? 'Sign out' : 'Sign in'}
+      </Button>
+    </div>
+  );
+};

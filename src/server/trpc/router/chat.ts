@@ -45,9 +45,14 @@ export const chatRouter = router({
       //     userId: ctx.session.user.id,
       //   },
       // });
+
+      console.log(input.message);
+      console.log(input.chatId);
+
       return ctx.prisma.messages.create({
         data: {
-          message: 'yo',
+          // message: 'yo',
+          message: input.message,
           chat: {
             connect: {
               // chatId: 'cld0k2f950000xxlw7sme6fz7',
@@ -62,13 +67,21 @@ export const chatRouter = router({
           },
         },
       });
+      // return ctx.prisma.test.create({
+      //   data: {
+      //     message: input.message,
+      //     mtwo: input.chatId,
+      //   },
+      // });
     }),
   getMessages: protectedProcedure
     .input(z.object({ chatId: z.string() }))
     .query(({ ctx, input }) => {
       return ctx.prisma.messages.findMany({
         where: {
-          chatsChatId: input.chatId,
+          chat: {
+            chatId: input.chatId,
+          },
         },
       });
     }),

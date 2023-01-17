@@ -9,7 +9,7 @@ const ChatInterface = ({ currentChatId }: any) => {
   return (
     <Box>
       <Text>{currentChatId}</Text>
-      <DisplayMessages />
+      <DisplayMessages currentChatId={currentChatId} />
       {currentChatId !== '' ? (
         <SendMessage currentChatId={currentChatId} />
       ) : (

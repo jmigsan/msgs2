@@ -80,3 +80,9 @@ model Messages {
     chatsChatId String
     userId      String
 }
+
+model Test {
+    id      String @id @default(cuid())
+    message String
+    mtwo    String
+}

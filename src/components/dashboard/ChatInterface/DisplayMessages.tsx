@@ -8,6 +8,8 @@ const DisplayMessages = ({ currentChatId }: any) => {
   });
   const { data: sessionData } = useSession();
 
+  console.log(chatMessages.data);
+
   return (
     <Box>
       {chatMessages.data?.map((message) => (

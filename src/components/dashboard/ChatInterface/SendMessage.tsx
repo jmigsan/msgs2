@@ -8,7 +8,10 @@ const SendMessage = ({ currentChatId }: any) => {
   const [message, setMessage] = useState('');
 
   const sendMessage = () => {
-    sendMessageMutation.mutate({ message: message, chatId: currentChatId });
+    sendMessageMutation.mutate({
+      message: message,
+      chatId: currentChatId,
+    });
     setMessage('');
   };
 
