@@ -46,14 +46,15 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String     @id @default(cuid())
     // name          String?
-    email         String?   @unique
+    email         String?    @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
     chats         Chats[]
+    messages      Messages[]
 }
 
 model VerificationToken {
@@ -65,6 +66,17 @@ model VerificationToken {
 }
 
 model Chats {
-    chatId String @id @default(cuid())
-    users  User[]
+    chatId   String     @id @default(cuid())
+    users    User[]
+    messages Messages[]
+}
+
+model Messages {
+    msgId       String   @id @default(cuid())
+    message     String
+    chat        Chats    @relation(fields: [chatsChatId], references: [chatId])
+    user        User     @relation(fields: [userId], references: [id])
+    createdAt   DateTime @default(now())
+    chatsChatId String
+    userId      String
 }

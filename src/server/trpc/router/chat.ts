@@ -5,15 +5,13 @@ export const chatRouter = router({
   createChat: protectedProcedure
     .input(z.object({ userId: z.string() }))
     .mutation(({ ctx, input }) => {
-      ctx.prisma.chats.create({
+      return ctx.prisma.chats.create({
         data: {
           users: {
             connect: [{ id: ctx.session.user.id }, { id: input.userId }],
           },
         },
       });
-
-      return;
     }),
   getChats: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.chats.findMany({
@@ -26,4 +24,41 @@ export const chatRouter = router({
       },
     });
   }),
+  getChat: protectedProcedure
+    .input(z.object({ chatId: z.string().nullish() }).nullish())
+    .query(({ ctx, input }) => {
+      if (input?.chatId) {
+        return ctx.prisma.chats.findFirst({
+          where: {
+            chatId: input.chatId,
+          },
+        });
+      }
+    }),
+  sendMessage: protectedProcedure
+    .input(z.object({ message: z.string(), chatId: z.string() }))
+    .mutation(({ ctx, input }) => {
+      // return ctx.prisma.messages.create({
+      //   data: {
+      //     message: input.message,
+      //     chatsChatId: input.chatId,
+      //     userId: ctx.session.user.id,
+      //   },
+      // });
+      return ctx.prisma.messages.create({
+        data: {
+          message: 'yo',
+          chat: {
+            connect: {
+              chatId: 'cld0k2f950000xxlw7sme6fz7',
+            },
+          },
+          user: {
+            connect: {
+              id: 'cld0gn2lb0000xxawp4io16j5',
+            },
+          },
+        },
+      });
+    }),
 });

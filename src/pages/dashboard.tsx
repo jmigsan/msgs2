@@ -13,8 +13,10 @@ const Dashboard = () => {
   const router = useRouter();
   const { data: sessionData } = useSession();
 
-  if (sessionData === undefined) {
-    router.push('/');
+  if (typeof window !== 'undefined') {
+    if (sessionData === undefined) {
+      router.push('/');
+    }
   }
 
   const [currentChatId, setCurrentChatId] = useState('');
@@ -28,9 +30,9 @@ const Dashboard = () => {
       </Head>
       <main>
         <CreateChat />
-        <Divider />
+        <Divider m={2} />
         <ChatList setCurrentChatId={setCurrentChatId} />
-        <Divider />
+        <Divider m={2} />
         <ChatInterface currentChatId={currentChatId} />
       </main>
     </>
