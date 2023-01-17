@@ -50,12 +50,14 @@ export const chatRouter = router({
           message: 'yo',
           chat: {
             connect: {
-              chatId: 'cld0k2f950000xxlw7sme6fz7',
+              // chatId: 'cld0k2f950000xxlw7sme6fz7',
+              chatId: input.chatId,
             },
           },
           user: {
             connect: {
-              id: 'cld0gn2lb0000xxawp4io16j5',
+              // id: 'cld0gn2lb0000xxawp4io16j5',
+              id: ctx.session.user.id,
             },
           },
         },
