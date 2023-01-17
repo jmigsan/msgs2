@@ -1,9 +1,18 @@
-import { Text } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
+import { trpc } from '../../utils/trpc';
 
-const ChatList = () => {
+// fix to turn into usestate later
+const ChatList = (setCurrentChatId: any) => {
+  const chats = trpc.chat.getChats.useQuery();
+
   return (
     <>
       <Text>Your Chats</Text>
+      {chats.data?.map((chat) => (
+        <Button onClick={() => setCurrentChatId(chat.chatId)}>
+          {chat.chatId}
+        </Button>
+      ))}
     </>
   );
 };

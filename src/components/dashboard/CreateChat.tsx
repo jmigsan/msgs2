@@ -11,9 +11,9 @@ const CreateChat = () => {
     setUserToInvite('');
   };
 
+  // change input onchange to username later
   return (
     <>
-      {/* change it to username later */}
       <Input
         placeholder='Invite someone by typing their user id.'
         onChange={(e) => setUserToInvite(e.target.value)}

@@ -7,6 +7,7 @@ import { Button, Divider, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import CreateChat from '../components/dashboard/CreateChat';
 import ChatList from '../components/dashboard/ChatList';
+import ChatInterface from '../components/dashboard/ChatInterface';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -15,6 +16,8 @@ const Dashboard = () => {
   if (sessionData === undefined) {
     router.push('/');
   }
+
+  const [currentChatId, setCurrentChatId] = useState('');
 
   return (
     <>
@@ -26,7 +29,9 @@ const Dashboard = () => {
       <main>
         <CreateChat />
         <Divider />
-        <ChatList />
+        <ChatList setCurrentChatId={setCurrentChatId} />
+        <Divider />
+        <ChatInterface currentChatId={currentChatId} />
       </main>
     </>
   );
