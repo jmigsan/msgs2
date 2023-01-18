@@ -1,13 +1,26 @@
-import { Button, Input } from '@chakra-ui/react';
+import {
+  Button,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Spinner,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import { trpc } from '../../../utils/trpc';
 
 const SendMessage = ({ currentChatId }: any) => {
   const utils = trpc.useContext();
 
+  const [sending, setSending] = useState(false);
+
   const sendMessageMutation = trpc.chat.sendMessage.useMutation({
-    onSuccess: () => {
+    onMutate: () => {
+      setSending(true);
+    },
+    onSettled: () => {
+      setSending(false);
       utils.chat.getMessages.invalidate();
+      setMessage('');
     },
   });
 
@@ -18,16 +31,22 @@ const SendMessage = ({ currentChatId }: any) => {
       message: message,
       chatId: currentChatId,
     });
-    setMessage('');
   };
 
   return (
     <>
-      <Input
-        placeholder='Send a message...'
-        onChange={(e) => setMessage(e.target.value)}
-        value={message}
-      />
+      <InputGroup>
+        <Input
+          placeholder='Send a message...'
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
+          disabled={sending}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') sendMessage();
+          }}
+        />
+        <InputRightElement children={sending ? <Spinner /> : <></>} />
+      </InputGroup>
       <Button onClick={() => sendMessage()}>Send</Button>
     </>
   );
