@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { Button, Divider, Input } from '@chakra-ui/react';
+import { Button, Container, Divider, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import CreateChat from '../components/dashboard/CreateChat';
 import ChatList from '../components/dashboard/ChatList';
@@ -15,7 +15,8 @@ const Dashboard = () => {
   console.log(sessionData);
 
   if (typeof window !== 'undefined') {
-    if (sessionData === undefined) {
+    // it's using == instead of === because it works and fixing it feels long just for some extra DX.
+    if (sessionData == undefined) {
       router.push('/');
     }
   }
@@ -32,11 +33,13 @@ const Dashboard = () => {
       <main>
         <AuthShowcase />
 
-        <CreateChat />
-        <Divider m={2} />
-        <ChatList setCurrentChatId={setCurrentChatId} />
-        <Divider m={2} />
-        <ChatInterface currentChatId={currentChatId} />
+        <Container>
+          <CreateChat />
+          <Divider m={2} />
+          <ChatList setCurrentChatId={setCurrentChatId} />
+          <Divider m={2} />
+          <ChatInterface currentChatId={currentChatId} />
+        </Container>
       </main>
     </>
   );

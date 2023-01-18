@@ -3,7 +3,13 @@ import { useState } from 'react';
 import { trpc } from '../../../utils/trpc';
 
 const SendMessage = ({ currentChatId }: any) => {
-  const sendMessageMutation = trpc.chat.sendMessage.useMutation();
+  const utils = trpc.useContext();
+
+  const sendMessageMutation = trpc.chat.sendMessage.useMutation({
+    onSuccess: () => {
+      utils.chat.getMessages.invalidate();
+    },
+  });
 
   const [message, setMessage] = useState('');
 

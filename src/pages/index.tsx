@@ -9,8 +9,11 @@ const Home: NextPage = () => {
   const router = useRouter();
   const { data: sessionData } = useSession();
 
-  if (sessionData !== undefined) {
-    router.push('/dashboard');
+  if (typeof window !== 'undefined') {
+    // it's using != instead of !== because it works and fixing it feels long just for some extra DX.
+    if (sessionData != undefined) {
+      router.push('/dashboard');
+    }
   }
 
   return (
