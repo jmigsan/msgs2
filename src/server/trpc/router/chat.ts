@@ -3,12 +3,15 @@ import { router, publicProcedure, protectedProcedure } from '../trpc';
 
 export const chatRouter = router({
   createChat: protectedProcedure
-    .input(z.object({ userId: z.string() }))
+    .input(z.object({ username: z.string() }))
     .mutation(({ ctx, input }) => {
       return ctx.prisma.chats.create({
         data: {
           users: {
-            connect: [{ id: ctx.session.user.id }, { id: input.userId }],
+            connect: [
+              { username: ctx.session.user.username },
+              { username: input.username },
+            ],
           },
         },
       });

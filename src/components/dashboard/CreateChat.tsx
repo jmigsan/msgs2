@@ -7,7 +7,7 @@ const CreateChat = () => {
   const createChatMutation = trpc.chat.createChat.useMutation();
 
   const createChat = () => {
-    createChatMutation.mutate({ userId: userToInvite });
+    createChatMutation.mutate({ username: userToInvite });
     setUserToInvite('');
   };
 
@@ -15,7 +15,7 @@ const CreateChat = () => {
   return (
     <>
       <Input
-        placeholder='Invite someone by typing their user id'
+        placeholder='Invite someone by typing their username'
         onChange={(e) => setUserToInvite(e.target.value)}
         value={userToInvite}
       />

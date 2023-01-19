@@ -39,7 +39,7 @@ const AuthShowcase: React.FC = () => {
 
   return (
     <div>
-      {sessionData && <p>Logged in as {sessionData?.user?.id}</p>}
+      {sessionData && <p>Logged in as {sessionData?.user?.username}</p>}
       {secretMessage && <p>{secretMessage}</p>}
       <Button onClick={sessionData ? () => signOut() : () => signIn()}>
         {sessionData ? 'Sign out' : 'Sign in'}
