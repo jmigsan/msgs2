@@ -17,10 +17,11 @@ const UsernameInit = () => {
   });
 
   const setUsername = () => {
-    const errorMessage = setUsernameMutation.mutate({
-      username: usernameInput,
-    });
-    setErrorMessage(errorMessage.data);
+    // const errorMessage = setUsernameMutation.mutate({
+    //   username: usernameInput,
+    // });
+    // setErrorMessage(errorMessage.data);
+    setUsernameMutation.mutate({ username: usernameInput });
   };
 
   return (
