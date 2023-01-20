@@ -22,8 +22,6 @@ const Account: NextPage = () => {
     }
   }
 
-  const [currentChatId, setCurrentChatId] = useState('');
-
   return (
     <>
       <Head>
