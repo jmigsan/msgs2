@@ -18,6 +18,7 @@ import ChatList from '../components/dashboard/ChatList';
 import ChatInterface from '../components/dashboard/ChatInterface';
 import Link from 'next/link';
 import PublicUserList from '../components/phonebook/PublicUserList';
+import Navbar from '../components/all/navbar';
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
@@ -38,7 +39,8 @@ const Dashboard: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <AuthShowcase />
+        <Navbar />
+        {/* <AuthShowcase /> */}
 
         <Container>
           <Heading>Phonebook</Heading>

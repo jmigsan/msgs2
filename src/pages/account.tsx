@@ -11,6 +11,7 @@ import ChatInterface from '../components/dashboard/ChatInterface';
 import UsernameChange from '../components/account/UsernameChange';
 import Link from 'next/link';
 import PublicStatusChange from '../components/account/PublicStatusChange';
+import Navbar from '../components/all/navbar';
 
 const Account: NextPage = () => {
   const router = useRouter();
@@ -31,7 +32,8 @@ const Account: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <AuthShowcase />
+        <Navbar />
+        {/* <AuthShowcase /> */}
 
         <Container>
           <UsernameChange />

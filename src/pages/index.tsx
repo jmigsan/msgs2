@@ -4,6 +4,7 @@ import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Button } from '@chakra-ui/react';
+import Navbar from '../components/all/navbar';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -24,7 +25,8 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <AuthShowcase />
+        <Navbar />
+        {/* <AuthShowcase /> */}
       </main>
     </>
   );
