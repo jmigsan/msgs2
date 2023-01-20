@@ -8,9 +8,10 @@ import { useState } from 'react';
 import CreateChat from '../components/dashboard/CreateChat';
 import ChatList from '../components/dashboard/ChatList';
 import ChatInterface from '../components/dashboard/ChatInterface';
+import UsernameChange from '../components/dashboard/UsernameChange';
 import Link from 'next/link';
 
-const Dashboard: NextPage = () => {
+const Account: NextPage = () => {
   const router = useRouter();
   const { data: sessionData } = useSession();
 
@@ -34,17 +35,13 @@ const Dashboard: NextPage = () => {
         <AuthShowcase />
 
         <Container>
-          <CreateChat />
-          <Divider m={2} />
-          <ChatList setCurrentChatId={setCurrentChatId} />
-          <Divider m={2} />
-          <ChatInterface currentChatId={currentChatId} />
+          <UsernameChange />
         </Container>
       </main>
     </>
   );
 };
-export default Dashboard;
+export default Account;
 
 const AuthShowcase: React.FC = () => {
   const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery();
@@ -54,8 +51,8 @@ const AuthShowcase: React.FC = () => {
   return (
     <div>
       {sessionData && <p>Logged in as {sessionData?.user?.username}</p>}
-      <Link href={'/account'}>
-        <Button>Change Username & Other Settings</Button>
+      <Link href={'/dashboard'}>
+        <Button>Go Home</Button>
       </Link>
       {secretMessage && <p>{secretMessage}</p>}
       <Button onClick={sessionData ? () => signOut() : () => signIn()}>

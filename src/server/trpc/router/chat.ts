@@ -9,7 +9,9 @@ export const chatRouter = router({
         data: {
           users: {
             connect: [
+              // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
               { username: ctx.session.user.username },
+              // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
               { username: input.username },
             ],
           },
@@ -25,15 +27,21 @@ export const chatRouter = router({
           },
         },
       },
+      include: {
+        users: true,
+      },
     });
   }),
   getChat: protectedProcedure
     .input(z.object({ chatId: z.string().nullish() }).nullish())
     .query(({ ctx, input }) => {
-      if (input?.chatId) {
+      if (input?.chatId !== undefined) {
         return ctx.prisma.chats.findFirst({
           where: {
-            chatId: input.chatId,
+            chatId: input.chatId as string,
+          },
+          include: {
+            users: true,
           },
         });
       }

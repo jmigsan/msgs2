@@ -15,11 +15,10 @@ const CreateChat = () => {
   return (
     <>
       <Input
-        placeholder='Invite someone by typing their username'
+        placeholder='Type a username start a conversation...'
         onChange={(e) => setUserToInvite(e.target.value)}
         value={userToInvite}
       />
-      <div>{userToInvite}</div>
       <Button onClick={() => createChat()}>Create Chat</Button>
     </>
   );
