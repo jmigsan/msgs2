@@ -20,7 +20,6 @@ const UsernameChange = () => {
       setInitialising(false);
     },
     onSuccess: () => {
-      router.push('/dashboard');
       router.reload();
     },
   });

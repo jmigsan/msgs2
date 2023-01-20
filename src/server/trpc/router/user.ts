@@ -36,7 +36,7 @@ export const userRouter = router({
         id: ctx.session.user.id,
       },
       data: {
-        public: ctx.session.user.public,
+        public: !ctx.session.user.public,
       },
     });
   }),
