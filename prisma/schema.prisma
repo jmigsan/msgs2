@@ -56,6 +56,7 @@ model User {
     sessions      Session[]
     chats         Chats[]
     messages      Messages[]
+    public        Boolean    @default(false)
 }
 
 model VerificationToken {

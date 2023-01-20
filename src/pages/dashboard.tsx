@@ -47,8 +47,6 @@ const Dashboard: NextPage = () => {
 export default Dashboard;
 
 const AuthShowcase: React.FC = () => {
-  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery();
-
   const { data: sessionData } = useSession();
 
   return (
@@ -57,7 +55,13 @@ const AuthShowcase: React.FC = () => {
       <Link href={'/account'}>
         <Button>Change Username & Other Settings</Button>
       </Link>
-      {secretMessage && <p>{secretMessage}</p>}
+      <br />
+      <Link href={'/dashboard'}>
+        <Button>Dashboard</Button>
+      </Link>
+      <Link href={'/phonebook'}>
+        <Button>Phonebook</Button>
+      </Link>
       <Button onClick={sessionData ? () => signOut() : () => signIn()}>
         {sessionData ? 'Sign out' : 'Sign in'}
       </Button>

@@ -30,4 +30,21 @@ export const userRouter = router({
         },
       });
     }),
+  setPublicStatus: protectedProcedure.mutation(({ ctx }) => {
+    return ctx.prisma.user.update({
+      where: {
+        id: ctx.session.user.id,
+      },
+      data: {
+        public: ctx.session.user.public,
+      },
+    });
+  }),
+  getPublicUsers: protectedProcedure.query(({ ctx }) => {
+    return ctx.prisma.user.findMany({
+      where: {
+        public: true,
+      },
+    });
+  }),
 });

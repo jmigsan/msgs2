@@ -3,16 +3,23 @@ import Head from 'next/head';
 import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { Button, Container, Divider, Input, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Heading,
+  Input,
+  Text,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import CreateChat from '../components/dashboard/CreateChat';
 import ChatList from '../components/dashboard/ChatList';
 import ChatInterface from '../components/dashboard/ChatInterface';
-import UsernameChange from '../components/account/UsernameChange';
 import Link from 'next/link';
-import PublicStatusChange from '../components/account/PublicStatusChange';
+import PublicUserList from '../components/phonebook/PublicUserList';
 
-const Account: NextPage = () => {
+const Dashboard: NextPage = () => {
   const router = useRouter();
   const { data: sessionData } = useSession();
 
@@ -34,14 +41,18 @@ const Account: NextPage = () => {
         <AuthShowcase />
 
         <Container>
-          <UsernameChange />
-          <PublicStatusChange />
+          <Heading>Phonebook</Heading>
+          <Text>
+            Users which have chosen to become public. Use their username to add
+            them.
+          </Text>
+          <PublicUserList />
         </Container>
       </main>
     </>
   );
 };
-export default Account;
+export default Dashboard;
 
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
