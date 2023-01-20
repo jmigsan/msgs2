@@ -12,6 +12,7 @@ const ChatInterface = ({ currentChatId }: any) => {
     return (
       <Box>
         <Text>
+          {chat.data.users.length === 1 ? chat.data.users[0]?.username : ''}
           {chat.data.users[0]?.username === sessionData?.user?.username
             ? chat.data.users[1]?.username
             : chat.data.users[0]?.username}

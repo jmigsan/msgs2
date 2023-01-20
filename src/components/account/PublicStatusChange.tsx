@@ -1,4 +1,4 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, HStack, Text } from '@chakra-ui/react';
 import { trpc } from '../../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
@@ -27,12 +27,14 @@ const PublicStatusChange = () => {
 
   return (
     <>
-      <Text>
-        Current Public Status: {sessionData?.user?.public ? 'True' : 'False'}
-      </Text>
-      <Button onClick={() => togglePublicStatus()} disabled={initialising}>
-        Toggle Public Status
-      </Button>
+      <HStack>
+        <Text>
+          Current Public Status: {sessionData?.user?.public ? 'True' : 'False'}
+        </Text>
+        <Button onClick={() => togglePublicStatus()} disabled={initialising}>
+          Toggle Public Status
+        </Button>
+      </HStack>
     </>
   );
 };

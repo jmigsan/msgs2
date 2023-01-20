@@ -3,7 +3,16 @@ import Head from 'next/head';
 import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { Button, Container, Divider, Input, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Divider,
+  HStack,
+  Input,
+  Text,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import CreateChat from '../components/dashboard/CreateChat';
 import ChatList from '../components/dashboard/ChatList';
@@ -33,40 +42,23 @@ const Dashboard: NextPage = () => {
       </Head>
       <main>
         <Navbar />
-        {/* <AuthShowcase /> */}
 
-        <Container>
-          <CreateChat />
-          <Divider m={2} />
-          <ChatList setCurrentChatId={setCurrentChatId} />
-          <Divider m={2} />
-          <ChatInterface currentChatId={currentChatId} />
-        </Container>
+        <Center pt={6}>
+          <Box>
+            <HStack>
+              <Box>
+                <CreateChat />
+                <Divider p={2} />
+                <ChatList setCurrentChatId={setCurrentChatId} />
+              </Box>
+              <Box>
+                <ChatInterface currentChatId={currentChatId} />
+              </Box>
+            </HStack>
+          </Box>
+        </Center>
       </main>
     </>
   );
 };
 export default Dashboard;
-
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  return (
-    <div>
-      {sessionData && <p>Logged in as {sessionData?.user?.username}</p>}
-      <Link href={'/account'}>
-        <Button>Change Username & Other Settings</Button>
-      </Link>
-      <br />
-      <Link href={'/dashboard'}>
-        <Button>Dashboard</Button>
-      </Link>
-      <Link href={'/phonebook'}>
-        <Button>Phonebook</Button>
-      </Link>
-      <Button onClick={sessionData ? () => signOut() : () => signIn()}>
-        {sessionData ? 'Sign out' : 'Sign in'}
-      </Button>
-    </div>
-  );
-};

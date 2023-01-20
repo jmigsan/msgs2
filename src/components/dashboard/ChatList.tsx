@@ -1,4 +1,4 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Stack, Text } from '@chakra-ui/react';
 import { trpc } from '../../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
@@ -10,17 +10,21 @@ const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
 
   return (
     <>
-      <Text>Your Conversations</Text>
-      <div>{currentChatId}</div>
-      {chats.data?.map((chat) => (
-        <Box key={chat.chatId}>
-          <Button onClick={() => setCurrentChatId(chat.chatId)}>
-            {chat.users[0]?.username === sessionData?.user?.username
-              ? chat.users[1]?.username
-              : chat.users[0]?.username}
-          </Button>
-        </Box>
-      ))}
+      <Box h={'md'} pt={2}>
+        <Stack>
+          <Text>Your Conversations</Text>
+          {chats.data?.map((chat) => (
+            <Box key={chat.chatId}>
+              <Button onClick={() => setCurrentChatId(chat.chatId)}>
+                {chat.users.length === 1 ? chat.users[0]?.username : ''}
+                {chat.users[0]?.username === sessionData?.user?.username
+                  ? chat.users[1]?.username
+                  : chat.users[0]?.username}
+              </Button>
+            </Box>
+          ))}
+        </Stack>
+      </Box>
     </>
   );
 };

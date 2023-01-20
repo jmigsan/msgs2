@@ -33,19 +33,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-const AuthShowcase: React.FC = () => {
-  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery();
-
-  const { data: sessionData } = useSession();
-
-  return (
-    <div>
-      {sessionData && <p>Logged in as {sessionData?.user?.username}</p>}
-      {secretMessage && <p>{secretMessage}</p>}
-      <Button onClick={sessionData ? () => signOut() : () => signIn()}>
-        {sessionData ? 'Sign out' : 'Sign in'}
-      </Button>
-    </div>
-  );
-};

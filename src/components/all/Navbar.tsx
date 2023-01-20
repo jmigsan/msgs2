@@ -55,7 +55,7 @@ const Simple = () => {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Heading fontSize={'lg'}>💬 msgs2</Heading>
+            <Heading fontSize={'xl'}>💬 msgs2</Heading>
             <HStack
               as={'nav'}
               spacing={4}

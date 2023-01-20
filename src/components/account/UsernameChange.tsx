@@ -1,4 +1,4 @@
-import { Button, Input, Text } from '@chakra-ui/react';
+import { Button, HStack, Input, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { trpc } from '../../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
@@ -42,14 +42,18 @@ const UsernameChange = () => {
   return (
     <>
       <Text>Choose a new username.</Text>
-      <Input
-        placeholder='Choose a new username...'
-        onChange={(e) => setUsernameInput(e.target.value)}
-        value={usernameInput}
-        disabled={initialising}
-      />
+      <HStack>
+        <Input
+          placeholder='Choose a new username...'
+          onChange={(e) => setUsernameInput(e.target.value)}
+          value={usernameInput}
+          disabled={initialising}
+        />
+        <Button w={'72'} onClick={() => setUsername()}>
+          Change Username
+        </Button>
+      </HStack>
       <Text color={'red'}>{errorMessage}</Text>
-      <Button onClick={() => setUsername()}>Change Username</Button>
     </>
   );
 };

@@ -40,7 +40,6 @@ const Dashboard: NextPage = () => {
       </Head>
       <main>
         <Navbar />
-        {/* <AuthShowcase /> */}
 
         <Container>
           <Heading>Phonebook</Heading>
@@ -55,26 +54,3 @@ const Dashboard: NextPage = () => {
   );
 };
 export default Dashboard;
-
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  return (
-    <div>
-      {sessionData && <p>Logged in as {sessionData?.user?.username}</p>}
-      <Link href={'/account'}>
-        <Button>Change Username & Other Settings</Button>
-      </Link>
-      <br />
-      <Link href={'/dashboard'}>
-        <Button>Dashboard</Button>
-      </Link>
-      <Link href={'/phonebook'}>
-        <Button>Phonebook</Button>
-      </Link>
-      <Button onClick={sessionData ? () => signOut() : () => signIn()}>
-        {sessionData ? 'Sign out' : 'Sign in'}
-      </Button>
-    </div>
-  );
-};

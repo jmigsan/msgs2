@@ -12,6 +12,7 @@ const DisplayMessages = ({ currentChatId }: any) => {
   return (
     <Box>
       <Box
+        w={'2xl'}
         h={'md'}
         overflowY={'scroll'}
         display={'flex'}
