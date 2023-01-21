@@ -3,7 +3,16 @@ import Head from 'next/head';
 import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { Button } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Heading,
+  Stack,
+  Text,
+  Image,
+} from '@chakra-ui/react';
 import NavbarHome from '../components/all/NavbarHome';
 
 const Home: NextPage = () => {
@@ -26,7 +35,30 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <NavbarHome />
-        {/* <AuthShowcase /> */}
+
+        <Center>
+          <Stack>
+            <Box pt={9}>
+              <Heading fontSize={'4xl'}>Make conversations!</Heading>
+              <Center p={4}>
+                <Text>Sign in and talk to people!</Text>
+              </Center>
+            </Box>
+            <Button
+              colorScheme={'yellow'}
+              onClick={sessionData ? () => signOut() : () => signIn()}
+            >
+              {sessionData ? 'Sign out' : 'Sign in'}
+            </Button>
+          </Stack>
+          <Box w={'lg'} p={10}>
+            <Image
+              src={
+                'https://images.unsplash.com/photo-1513171920216-2640b288471b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
+              }
+            />
+          </Box>
+        </Center>
       </main>
     </>
   );

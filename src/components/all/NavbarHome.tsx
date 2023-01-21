@@ -48,7 +48,11 @@ const Simple = () => {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box />
           <HStack spacing={8} alignItems={'center'}>
-            <Heading fontSize={'xl'}>💬 msgs2</Heading>
+            <Link href={'/'}>
+              <ChakraLink href='/'>
+                <Heading fontSize={'xl'}>💬 msgs2</Heading>
+              </ChakraLink>
+            </Link>
             <HStack
               as={'nav'}
               spacing={4}
