@@ -11,7 +11,7 @@ export const userRouter = router({
 
       const nameSearch = await ctx.prisma.user.findFirst({
         where: {
-          // @ts-ignore. i don't know why it says 'UserWhereInput' and why this isn't assingable to it.
+          // unignoring // @ts-ignore. i don't know why it says 'UserWhereInput' and why this isn't assingable to it.
           username: input.username,
         },
       });
@@ -25,7 +25,7 @@ export const userRouter = router({
           id: ctx.session.user.id,
         },
         data: {
-          // @ts-ignore. i don't know why it says 'UserUpdateInput' and why this isn't assingable to it.
+          // unignoring // @ts-ignore. i don't know why it says 'UserUpdateInput' and why this isn't assingable to it.
           username: input.username,
         },
       });

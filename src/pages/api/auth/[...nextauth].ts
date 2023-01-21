@@ -12,9 +12,9 @@ export const authOptions: NextAuthOptions = {
     session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
-        // @ts-ignore. Property 'public' does not exist on type 'User | AdapterUser'. Not sure why.
+        // unignoring // @ts-ignore. Property 'public' does not exist on type 'User | AdapterUser'. Not sure why.
         session.user.username = user.username;
-        // @ts-ignore. Property 'public' does not exist on type 'User | AdapterUser'. Not sure why.
+        // unignoring // @ts-ignore. Property 'public' does not exist on type 'User | AdapterUser'. Not sure why.
         session.user.public = user.public;
       }
       return session;

@@ -7,7 +7,7 @@ export const chatRouter = router({
     .mutation(async ({ ctx, input }) => {
       const nameSearch = await ctx.prisma.user.findFirst({
         where: {
-          // @ts-ignore. i don't know why it says 'UserWhereInput' and why this isn't assingable to it.
+          // unignoring // @ts-ignore. i don't know why it says 'UserWhereInput' and why this isn't assingable to it.
           username: input.username,
         },
       });
@@ -20,9 +20,9 @@ export const chatRouter = router({
         data: {
           users: {
             connect: [
-              // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
+              // unignoring // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
               { username: ctx.session.user.username },
-              // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
+              // unignoring // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
               { username: input.username },
             ],
           },
