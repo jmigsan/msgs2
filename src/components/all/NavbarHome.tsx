@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link as ChakraLink,
   IconButton,
@@ -60,12 +59,6 @@ const Simple = () => {
             ></HStack>
           </HStack>
           <HStack>
-            {sessionData && (
-              <>
-                <Text>Logged in as {sessionData?.user?.username}</Text>
-                <Avatar size={'sm'} src={sessionData?.user?.image as string} />
-              </>
-            )}
             <Button
               colorScheme={'yellow'}
               onClick={sessionData ? () => signOut() : () => signIn()}

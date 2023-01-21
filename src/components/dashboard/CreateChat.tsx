@@ -38,10 +38,10 @@ const CreateChat = () => {
   return (
     <Stack>
       <Input
-        placeholder='Type a username start a conversation...'
+        placeholder='Type a username...'
         onChange={(e) => setUserToInvite(e.target.value)}
         value={userToInvite}
-        w={'xs'}
+        w={'60'}
         onKeyDown={(e) => {
           if (e.key === 'Enter') createChat();
         }}

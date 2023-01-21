@@ -11,7 +11,13 @@ import {
   Divider,
   HStack,
   Input,
+  Modal,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+  Stack,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import CreateChat from '../components/dashboard/CreateChat';
@@ -43,22 +49,65 @@ const Dashboard: NextPage = () => {
       <main>
         <Navbar />
 
-        <Center pt={5}>
-          <Box>
-            <HStack>
-              <Box>
-                <CreateChat />
-                <Divider p={2} />
-                <ChatList setCurrentChatId={setCurrentChatId} />
-              </Box>
-              <Box>
-                <ChatInterface currentChatId={currentChatId} />
-              </Box>
-            </HStack>
-          </Box>
-        </Center>
+        <Box display={{ base: 'none', lg: 'block' }}>
+          <Center pt={5}>
+            <Box>
+              <HStack>
+                <Box>
+                  <CreateChat />
+                  <Divider p={2} />
+                  <ChatList setCurrentChatId={setCurrentChatId} />
+                </Box>
+                <Box>
+                  <ChatInterface currentChatId={currentChatId} />
+                </Box>
+              </HStack>
+            </Box>
+          </Center>
+        </Box>
+
+        <Box display={{ base: 'block', lg: 'none' }}>
+          <MobileView
+            setCurrentChatId={setCurrentChatId}
+            currentChatId={currentChatId}
+          />
+        </Box>
       </main>
     </>
   );
 };
 export default Dashboard;
+
+const MobileView = ({
+  setCurrentChatId,
+  currentChatId,
+}: {
+  setCurrentChatId: any;
+  currentChatId: any;
+}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <Center pt={5}>
+      <Stack>
+        <Button onClick={onOpen} colorScheme={'yellow'} bg={'yellow.100'}>
+          Your Conversations
+        </Button>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <Box px={4} pt={2}>
+              <ChatList setCurrentChatId={setCurrentChatId} />
+            </Box>
+            <ModalFooter>
+              <Button colorScheme='yellow' mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+        <ChatInterface currentChatId={currentChatId} />
+      </Stack>
+    </Center>
+  );
+};

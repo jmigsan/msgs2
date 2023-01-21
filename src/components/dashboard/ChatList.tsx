@@ -10,9 +10,9 @@ const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
 
   return (
     <>
-      <Box h={'md'} pt={2}>
+      <Text pt={2}>Your Conversations</Text>
+      <Box h={'sm'} pt={2} overflowY={'scroll'}>
         <Stack>
-          <Text>Your Conversations</Text>
           {chats.data?.map((chat) => (
             <Box key={chat.chatId}>
               <Button

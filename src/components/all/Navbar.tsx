@@ -71,7 +71,6 @@ const Simple = () => {
             {sessionData && (
               <>
                 <Text>Logged in as {sessionData?.user?.username}</Text>
-                <Avatar size={'sm'} src={sessionData?.user?.image as string} />
               </>
             )}
             <Button
