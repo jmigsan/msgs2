@@ -4,7 +4,18 @@ import { router, publicProcedure, protectedProcedure } from '../trpc';
 export const chatRouter = router({
   createChat: protectedProcedure
     .input(z.object({ username: z.string() }))
-    .mutation(({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
+      const nameSearch = await ctx.prisma.user.findFirst({
+        where: {
+          // @ts-ignore. i don't know why it says 'UserWhereInput' and why this isn't assingable to it.
+          username: input.username,
+        },
+      });
+
+      if (nameSearch === null) {
+        throw new Error('User not found.');
+      }
+
       return ctx.prisma.chats.create({
         data: {
           users: {

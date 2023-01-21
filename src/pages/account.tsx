@@ -4,6 +4,7 @@ import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import {
+  Box,
   Button,
   Container,
   Divider,
@@ -18,7 +19,7 @@ import ChatInterface from '../components/dashboard/ChatInterface';
 import UsernameChange from '../components/account/UsernameChange';
 import Link from 'next/link';
 import PublicStatusChange from '../components/account/PublicStatusChange';
-import Navbar from '../components/all/navbar';
+import Navbar from '../components/all/Navbar';
 
 const Account: NextPage = () => {
   const router = useRouter();
@@ -42,10 +43,12 @@ const Account: NextPage = () => {
         <Navbar />
 
         <Container>
-          <Stack>
-            <UsernameChange />
-            <PublicStatusChange />
-          </Stack>
+          <Box py={4}>
+            <Stack>
+              <UsernameChange />
+              <PublicStatusChange />
+            </Stack>
+          </Box>
         </Container>
       </main>
     </>

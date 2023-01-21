@@ -1,5 +1,6 @@
 import {
   Button,
+  HStack,
   Input,
   InputGroup,
   InputRightElement,
@@ -35,19 +36,21 @@ const SendMessage = ({ currentChatId }: any) => {
 
   return (
     <>
-      <InputGroup>
-        <Input
-          placeholder='Send a message...'
-          onChange={(e) => setMessage(e.target.value)}
-          value={message}
-          disabled={sending}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') sendMessage();
-          }}
-        />
-        <InputRightElement children={sending ? <Spinner /> : <></>} />
-      </InputGroup>
-      <Button onClick={() => sendMessage()}>Send</Button>
+      <HStack py={2}>
+        <InputGroup>
+          <Input
+            placeholder='Send a message...'
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            disabled={sending}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') sendMessage();
+            }}
+          />
+          <InputRightElement children={sending ? <Spinner /> : <></>} />
+        </InputGroup>
+        <Button onClick={() => sendMessage()}>Send</Button>
+      </HStack>
     </>
   );
 };

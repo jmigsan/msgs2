@@ -1,17 +1,40 @@
-import { Button, Divider, HStack, Input, Stack } from '@chakra-ui/react';
-import { useState } from 'react';
+import { Button, Divider, HStack, Input, Stack, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { trpc } from '../../utils/trpc';
+import { useRouter } from 'next/router';
 
 const CreateChat = () => {
+  const [initialising, setInitialising] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const router = useRouter();
+
   const [userToInvite, setUserToInvite] = useState('');
-  const createChatMutation = trpc.chat.createChat.useMutation();
+  const createChatMutation = trpc.chat.createChat.useMutation({
+    onMutate: () => {
+      setInitialising(true);
+    },
+    onSettled: () => {
+      setInitialising(false);
+    },
+    onSuccess: () => {
+      router.reload();
+    },
+  });
+
+  //i'd do onError instead, but it doesn't work sometimes.
+  useEffect(() => {
+    setErrorMessage(createChatMutation.error?.message as string);
+  }, [createChatMutation.error]);
 
   const createChat = () => {
-    createChatMutation.mutate({ username: userToInvite });
-    setUserToInvite('');
+    if (userToInvite === '') {
+      setErrorMessage('Please enter a username.');
+    } else {
+      createChatMutation.mutate({ username: userToInvite });
+      setUserToInvite('');
+    }
   };
 
-  // change input onchange to username later
   return (
     <Stack>
       <Input
@@ -19,8 +42,15 @@ const CreateChat = () => {
         onChange={(e) => setUserToInvite(e.target.value)}
         value={userToInvite}
         w={'xs'}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') createChat();
+        }}
+        disabled={initialising}
       />
-      <Button onClick={() => createChat()}>Create Chat</Button>
+      <Button onClick={() => createChat()} disabled={initialising}>
+        Create Chat
+      </Button>
+      <Text color={'red'}>{errorMessage}</Text>
     </Stack>
   );
 };

@@ -18,7 +18,13 @@ const PublicUserList = () => {
     return (
       <Box>
         {publicUsers.data?.map((user) => (
-          <Box p={3} key={user.username}>
+          <Box
+            my={2}
+            p={3}
+            key={user.username}
+            rounded={'lg'}
+            bg={'yellow.100'}
+          >
             <Text>{user.username}</Text>
           </Box>
         ))}

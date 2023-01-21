@@ -9,6 +9,20 @@ const DisplayMessages = ({ currentChatId }: any) => {
   );
   const { data: sessionData } = useSession();
 
+  if (currentChatId === undefined) {
+    return (
+      <Box>
+        <Box
+          w={'2xl'}
+          h={'md'}
+          overflowY={'scroll'}
+          display={'flex'}
+          flexDirection={'column-reverse'}
+        ></Box>
+      </Box>
+    );
+  }
+
   return (
     <Box>
       <Box

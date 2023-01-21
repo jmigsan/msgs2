@@ -10,6 +10,7 @@ import {
   Divider,
   Heading,
   Input,
+  Stack,
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
@@ -18,7 +19,7 @@ import ChatList from '../components/dashboard/ChatList';
 import ChatInterface from '../components/dashboard/ChatInterface';
 import Link from 'next/link';
 import PublicUserList from '../components/phonebook/PublicUserList';
-import Navbar from '../components/all/navbar';
+import Navbar from '../components/all/Navbar';
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
@@ -42,12 +43,19 @@ const Dashboard: NextPage = () => {
         <Navbar />
 
         <Container>
-          <Heading>Phonebook</Heading>
-          <Text>
-            Users which have chosen to become public. Use their username to add
-            them.
-          </Text>
-          <PublicUserList />
+          <Box pt={5}>
+            <Stack>
+              <Heading>Phonebook</Heading>
+              <Text>
+                Users which have chosen to become public. Use their username to
+                add them.
+              </Text>
+              <Text>
+                (You can even create a chat with yourself, if you like.)
+              </Text>
+              <PublicUserList />
+            </Stack>
+          </Box>
         </Container>
       </main>
     </>

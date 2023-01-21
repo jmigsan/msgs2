@@ -2,7 +2,7 @@ import { Box, Button, Stack, Text } from '@chakra-ui/react';
 import { trpc } from '../../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
-// fix to turn into usestate later
+// fix to turn into usestate instead of any later
 const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
   const { data: sessionData } = useSession();
   const chats = trpc.chat.getChats.useQuery();

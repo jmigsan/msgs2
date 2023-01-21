@@ -4,7 +4,7 @@ import { trpc } from '../utils/trpc';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { Button } from '@chakra-ui/react';
-import Navbar from '../components/all/navbar';
+import Navbar from '../components/all/Navbar';
 
 const Home: NextPage = () => {
   const router = useRouter();

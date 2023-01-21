@@ -18,7 +18,7 @@ import CreateChat from '../components/dashboard/CreateChat';
 import ChatList from '../components/dashboard/ChatList';
 import ChatInterface from '../components/dashboard/ChatInterface';
 import Link from 'next/link';
-import Navbar from '../components/all/navbar';
+import Navbar from '../components/all/Navbar';
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
@@ -43,7 +43,7 @@ const Dashboard: NextPage = () => {
       <main>
         <Navbar />
 
-        <Center pt={6}>
+        <Center pt={5}>
           <Box>
             <HStack>
               <Box>
