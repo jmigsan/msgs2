@@ -31,7 +31,12 @@ const PublicStatusChange = () => {
         <Text>
           Current Public Status: {sessionData?.user?.public ? 'True' : 'False'}
         </Text>
-        <Button onClick={() => togglePublicStatus()} disabled={initialising}>
+        <Button
+          onClick={() => togglePublicStatus()}
+          disabled={initialising}
+          bg={'yellow.100'}
+          colorScheme={'yellow'}
+        >
           Toggle Public Status
         </Button>
       </HStack>

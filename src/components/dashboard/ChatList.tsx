@@ -15,7 +15,11 @@ const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
           <Text>Your Conversations</Text>
           {chats.data?.map((chat) => (
             <Box key={chat.chatId}>
-              <Button onClick={() => setCurrentChatId(chat.chatId)}>
+              <Button
+                onClick={() => setCurrentChatId(chat.chatId)}
+                bg={'yellow.100'}
+                colorScheme={'yellow'}
+              >
                 {chat.users.length === 1 ? chat.users[0]?.username : ''}
                 {chat.users[0]?.username === sessionData?.user?.username
                   ? chat.users[1]?.username

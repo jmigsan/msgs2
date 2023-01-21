@@ -47,7 +47,12 @@ const CreateChat = () => {
         }}
         disabled={initialising}
       />
-      <Button onClick={() => createChat()} disabled={initialising}>
+      <Button
+        onClick={() => createChat()}
+        disabled={initialising}
+        bg={'yellow.100'}
+        colorScheme={'yellow'}
+      >
         Create Chat
       </Button>
       <Text color={'red'}>{errorMessage}</Text>

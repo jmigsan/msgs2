@@ -49,7 +49,12 @@ const UsernameChange = () => {
           value={usernameInput}
           disabled={initialising}
         />
-        <Button w={'72'} onClick={() => setUsername()}>
+        <Button
+          w={'72'}
+          onClick={() => setUsername()}
+          colorScheme={'yellow'}
+          bg={'yellow.100'}
+        >
           Change Username
         </Button>
       </HStack>

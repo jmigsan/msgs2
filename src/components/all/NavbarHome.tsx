@@ -41,31 +41,19 @@ const NavLink = ({ link, text }: { link: string; text: string }) => (
 
 const Simple = () => {
   const { data: sessionData } = useSession();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <Box bg={useColorModeValue('yellow.100', 'yellow.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-            colorScheme={'yellow'}
-          />
+          <Box />
           <HStack spacing={8} alignItems={'center'}>
             <Heading fontSize={'xl'}>💬 msgs2</Heading>
             <HStack
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}
-            >
-              <NavLink link={'/dashboard'} text={'Dashboard'} />
-              <NavLink link={'/phonebook'} text={'Phonebook'} />
-              <NavLink link={'/account'} text={'Account Settings'} />
-            </HStack>
+            ></HStack>
           </HStack>
           <HStack>
             {sessionData && (
@@ -82,16 +70,6 @@ const Simple = () => {
             </Button>
           </HStack>
         </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              <NavLink link={'/dashboard'} text={'Dashboard'} />
-              <NavLink link={'/phonebook'} text={'Phonebook'} />
-              <NavLink link={'/account'} text={'Account Settings'} />
-            </Stack>
-          </Box>
-        ) : null}
       </Box>
     </>
   );

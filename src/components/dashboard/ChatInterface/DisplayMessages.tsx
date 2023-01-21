@@ -36,15 +36,18 @@ const DisplayMessages = ({ currentChatId }: any) => {
           {chatMessages.data?.map((message) => (
             <Box key={message.msgId}>
               <Box
+                mx={2}
+                my={1}
                 p={3}
                 float={
                   message.userId === sessionData?.user?.id ? 'right' : 'left'
                 }
                 bgColor={
                   message.userId === sessionData?.user?.id
-                    ? 'blue.300'
+                    ? 'yellow.100'
                     : 'gray.300'
                 }
+                rounded={'xl'}
               >
                 <Text>{message.message}</Text>
               </Box>

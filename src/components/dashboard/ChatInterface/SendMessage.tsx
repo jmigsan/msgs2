@@ -49,7 +49,14 @@ const SendMessage = ({ currentChatId }: any) => {
           />
           <InputRightElement children={sending ? <Spinner /> : <></>} />
         </InputGroup>
-        <Button onClick={() => sendMessage()}>Send</Button>
+        <Button
+          onClick={() => sendMessage()}
+          bg={'yellow.100'}
+          colorScheme={'yellow'}
+          px={6}
+        >
+          Send
+        </Button>
       </HStack>
     </>
   );
