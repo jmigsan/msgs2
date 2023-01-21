@@ -47,7 +47,7 @@ const SendMessage = ({ currentChatId }: any) => {
               if (e.key === 'Enter') sendMessage();
             }}
           />
-          <InputRightElement children={sending ? <Spinner /> : <></>} />
+          {/* <InputRightElement children={sending ? <Spinner /> : <></>} /> */}
         </InputGroup>
         <Button
           onClick={() => sendMessage()}
