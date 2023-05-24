@@ -4,8 +4,8 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 // fix to turn into usestate instead of any later
 const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
-  const { data: sessionData } = useSession();
   const chats = trpc.chat.getChats.useQuery();
+  const currentUsername = trpc.user.getUsername.useQuery();
 
   return (
     <>
@@ -19,8 +19,8 @@ const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
                 bg={'yellow.100'}
                 colorScheme={'yellow'}
               >
-                {chat.users.length === 1 ? '' : chat.users[0]?.username}
-                {chat.users[0]?.username === sessionData?.user?.username
+                {chat.users.length === 1 ? chat.users[0]?.username : ''}
+                {chat.users[0]?.username === currentUsername.data
                   ? chat.users[1]?.username
                   : chat.users[0]?.username}
               </Button>
