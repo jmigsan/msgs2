@@ -20,7 +20,7 @@ const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
                 bg={'yellow.100'}
                 colorScheme={'yellow'}
               >
-                {chat.users.length === 1 ? chat.users[0]?.username : ''}
+                {chat.users.length === 1 ? '' : chat.users[0]?.username}
                 {chat.users[0]?.username === sessionData?.user?.username
                   ? chat.users[1]?.username
                   : chat.users[0]?.username}
