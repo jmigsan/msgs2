@@ -6,7 +6,6 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 const ChatList = ({ setCurrentChatId }: any, { currentChatId }: any) => {
   const { data: sessionData } = useSession();
   const chats = trpc.chat.getChats.useQuery();
-  console.log(currentChatId);
 
   return (
     <>
