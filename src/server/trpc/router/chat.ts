@@ -16,12 +16,21 @@ export const chatRouter = router({
         throw new Error('User not found.');
       }
 
+      const currentUsername = await ctx.prisma.user.findFirst({
+        where: {
+          id: ctx.session.user.id,
+        },
+        select: {
+          username: true,
+        },
+      });
+
       return ctx.prisma.chats.create({
         data: {
           users: {
             connect: [
               // unignoring // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
-              { username: ctx.session.user.username },
+              { username: currentUsername?.username },
               // unignoring // @ts-ignore. it says not assignable to 'UserWhereUniqueInput'. but i put @unique on the prisma already. not sure why angry.
               { username: input.username },
             ],

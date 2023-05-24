@@ -47,4 +47,16 @@ export const userRouter = router({
       },
     });
   }),
+  getUsername: protectedProcedure.query(async ({ ctx }) => {
+    const user = await ctx.prisma.user.findFirst({
+      where: {
+        id: ctx.session.user.id,
+      },
+      select: {
+        username: true,
+      },
+    });
+
+    return user?.username;
+  }),
 });

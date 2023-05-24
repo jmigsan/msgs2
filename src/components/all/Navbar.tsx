@@ -21,6 +21,7 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { trpc } from '../../utils/trpc';
 
 const NavLink = ({ link, text }: { link: string; text: string }) => (
   <Link href={link}>
@@ -42,6 +43,8 @@ const NavLink = ({ link, text }: { link: string; text: string }) => (
 const Simple = () => {
   const { data: sessionData } = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const currentUsername = trpc.user.getUsername.useQuery();
 
   return (
     <>
@@ -70,7 +73,7 @@ const Simple = () => {
           <HStack>
             {sessionData && (
               <>
-                <Text>Logged in as {sessionData?.user?.username}</Text>
+                <Text>Logged in as {currentUsername.data}</Text>
               </>
             )}
             <Button
